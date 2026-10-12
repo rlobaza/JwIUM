@@ -38,7 +38,6 @@ public class DataInput {
      */
     public int inputInteger(){
         String integerString = scanner.nextLine();
-        int integer = Integer.valueOf(integerString);
-        return integer;
+        return Integer.parseInt(integerString);
     }
 }

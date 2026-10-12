@@ -3,7 +3,7 @@ package jwium.lab1.messageboard.model;
 import java.util.ArrayList;
 
 public class MessagesManager {
-    private ArrayList<Message> messages = new ArrayList<>();
+    private final ArrayList<Message> messages = new ArrayList<>();
     
     public void ArrayList(){
         

@@ -9,7 +9,7 @@ public class Message {
     }
     
     public Message(){
-        content = new String("");
+        content = "";
     }
     
     public void setContent(String newContent){
