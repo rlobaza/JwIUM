@@ -22,19 +22,15 @@ public class Messageboard{
     
     /**
      * Main method that serves as the application's entry point.
-     * 
-     * <p><strong>Command-Line Arguments Order & Specification:</strong>
-     * <ul>
-     *   <li>{@code args[0]} (optional): The initial description text for the message board. 
-     *       If passed from CMD, it is automatically assigned as the board description. 
-     *       If no arguments are provided, the application will prompt the user to input the description interactively.</li>
-     * </ul>
+     * <p>
+     * Command-Line Arguments Order and Specification:
+     * args[0] (optional): The initial description text for the message board.
+     * If passed from CMD, it is automatically assigned as the board description.
+     * If no arguments are provided, the application will prompt the user to input it interactively.
      * 
      * <p>Documentation generated with the help of AI (Model: Gemini).
      * 
-     * @author Rafal Lobaza
-     * @version 1.0
-     * @param args command-line arguments passed to the application (expects 0 or 1 argument: {@code args[0]} as description)
+     * @param args command-line arguments passed to the application
      */
     public static void main(String[] args) {
         
