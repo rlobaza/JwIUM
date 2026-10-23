@@ -1,6 +1,7 @@
 
 package jwium.lab1.messageboard;
 import jwium.lab1.messageboard.controller.Controller;
+import jwium.lab1.messageboard.view.Frame;
 
 /**
  * The main entry point for the Messageboard application.
@@ -37,5 +38,8 @@ public class Messageboard{
         Controller controller = new Controller(args);
         controller.startProgram();
         
+        Frame frame = new Frame();
+        frame.setDefaultCloseOperation(Frame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 }
