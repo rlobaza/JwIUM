@@ -2,25 +2,36 @@
 package jwium.lab1.messageboard.view;
 import javax.swing.*;
 import java.awt.*;
+import jwium.lab1.messageboard.controller.*;
 
 
 public class Frame extends JFrame{
     
-    private final CardLayout layout = new CardLayout();
-    private final JPanel panel = new JPanel(layout);
+    private final Controller controller;
     
-    private final MainMenuPanel mainMenuPanel = new MainMenuPanel(layout, panel);
-    private final DescriptionPanel descriptionPanel = new DescriptionPanel(layout, panel, "test");
+    private final CardLayout cardLayout = new CardLayout();
+    private final JPanel cardPanel = new JPanel(cardLayout);
     
-    public Frame(){
+    private final MainMenuPanel mainMenuPanel;
+    private final DescriptionPanel descriptionPanel;
+    private final MessagesPanel messagesPanel;
+    
+    public Frame(Controller initialController, DefaultListModel messagesListModel){
+        controller = initialController;
+        
+        mainMenuPanel = new MainMenuPanel(cardLayout, cardPanel, this);
+        descriptionPanel = new DescriptionPanel(cardLayout, cardPanel, this, controller);
+        messagesPanel = new MessagesPanel(cardLayout, cardPanel, this, controller, messagesListModel);
+        
         setTitle("Message Board");
-        setSize(1080, 720);
+        setSize(1280, 720);
         
-        panel.add(mainMenuPanel, "MAIN_MENU");
-        panel.add(descriptionPanel, "DESCRIPTION");
+        cardPanel.add(mainMenuPanel, "MAIN_MENU");
+        cardPanel.add(descriptionPanel, "DESCRIPTION");
+        cardPanel.add(messagesPanel, "MESSAGES");
         
-        add(panel);
-        layout.show(panel, "MAIN_MENU");
+        add(cardPanel);
+        cardLayout.show(cardPanel, "MAIN_MENU");
     }
     
     public void openMainMenuPanel(){
@@ -29,5 +40,10 @@ public class Frame extends JFrame{
     
     public void openDescriptionPanel(){
         
+    }
+    
+    public void setDescription(String newDescription)
+    {
+        descriptionPanel.setDescription(newDescription);
     }
 }
