@@ -3,6 +3,7 @@ package jwium.lab1.messageboard.controller;
 import jwium.lab1.messageboard.view.*;
 import jwium.lab1.messageboard.model.*;
 import jwium.lab1.messageboard.exception.WrongIndexException;
+import javax.swing.*;
 
 /**
  * Controls the flow of the message board application.
@@ -100,10 +101,41 @@ public class Controller {
         }
     }
     
+    public void createWindow()
+    {
+        if(!manager.addDescriptionFromArgs(args)){
+            String description = JOptionPane.showInputDialog(null, "Please enter a description for your message board.", "Add Description", JOptionPane.PLAIN_MESSAGE);
+            
+            if(description == null){
+                return;
+            }
+            
+            while(description.equals(""))
+            {
+                description = JOptionPane.showInputDialog(null, "Invalid description. Please try again.", "Add Description", JOptionPane.ERROR_MESSAGE);
+                
+                if(description == null){
+                    return;
+                }
+            }   
+            
+            manager.changeDescription(description);
+        }
+        
+        Frame frame = new Frame(this, manager.getListModel());
+        frame.setDefaultCloseOperation(Frame.EXIT_ON_CLOSE);
+        frame.setDescription(manager.getDescription());
+        frame.setVisible(true);
+    }
+    
     /**
      * Signals the main program loop to terminate.
      */
     private void endProgram(){
         shouldEnd = true;
+    }
+    
+    public void changeDescription(String newDescription){
+        manager.changeDescription(newDescription);
     }
 }
