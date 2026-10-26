@@ -10,16 +10,4 @@
         <maven.compiler.release>25</maven.compiler.release>
         <exec.mainClass>jwium.lab1.messageboard.Messageboard</exec.mainClass>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>com.formdev</groupId>
-            <artifactId>flatlaf</artifactId>
-            <version>3.5.1</version>
-        </dependency>
-        <dependency>
-        <groupId>com.formdev</groupId>
-        <artifactId>flatlaf-intellij-themes</artifactId>
-        <version>3.5.1</version>
-        </dependency>
-    </dependencies>
 </project>
