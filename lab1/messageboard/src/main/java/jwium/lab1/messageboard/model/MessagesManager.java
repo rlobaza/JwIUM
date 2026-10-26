@@ -1,7 +1,6 @@
 
 package jwium.lab1.messageboard.model;
 import java.util.ArrayList;
-import javax.swing.DefaultListModel;
 import jwium.lab1.messageboard.exception.WrongIndexException;
 
 /**
@@ -16,8 +15,6 @@ public class MessagesManager {
     
     /** The list storing all application messages. */
     private final ArrayList<Message> messages = new ArrayList<>();
-    
-    private final DefaultListModel<Message> listModel = new DefaultListModel<>();
     
     /** The text description of the message board. */
     private String description = "";
@@ -107,9 +104,5 @@ public class MessagesManager {
      */
     public String getDescription(){
         return description;
-    }
-    
-    public DefaultListModel getListModel(){
-        return listModel;
     }
 }

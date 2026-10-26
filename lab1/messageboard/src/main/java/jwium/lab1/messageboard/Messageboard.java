@@ -1,7 +1,6 @@
 
 package jwium.lab1.messageboard;
 import jwium.lab1.messageboard.controller.Controller;
-import com.formdev.flatlaf.intellijthemes.FlatNordIJTheme;
 
 /**
  * The main entry point for the Messageboard application.
@@ -35,9 +34,8 @@ public class Messageboard{
      */
     public static void main(String[] args) {
         
-        FlatNordIJTheme.setup();
-        
         Controller controller = new Controller(args);
-        controller.createWindow();
+        controller.startProgram();
+        
     }
 }

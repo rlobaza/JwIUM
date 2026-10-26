@@ -1,1 +1,0 @@
-"A message board where you can post your own notes, share thoughts, and leave messages for others."
