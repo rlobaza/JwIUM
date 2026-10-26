@@ -1,0 +1,16 @@
+jwium\lab1\messageboard\package-info.class
+jwium\lab1\messageboard\model\package-info.class
+jwium\lab1\messageboard\view\package-info.class
+jwium\lab1\messageboard\view\DescriptionPanel.class
+jwium\lab1\messageboard\view\MainMenuPanel.class
+jwium\lab1\messageboard\view\MessagesPanel.class
+jwium\lab1\messageboard\Messageboard.class
+jwium\lab1\messageboard\controller\package-info.class
+jwium\lab1\messageboard\model\Message.class
+jwium\lab1\messageboard\view\Frame.class
+jwium\lab1\messageboard\view\DataInput.class
+jwium\lab1\messageboard\model\MessagesManager.class
+jwium\lab1\messageboard\view\Display.class
+jwium\lab1\messageboard\controller\Controller.class
+jwium\lab1\messageboard\exception\package-info.class
+jwium\lab1\messageboard\exception\WrongIndexException.class
