@@ -143,8 +143,8 @@ public class Controller {
         return manager.getListModel();
     }
     
-    public void addMessageToListModel(String content){
-        manager.addMessageToListModel(content);
+    public void addMessageToListModel(String content, String author){
+        manager.addMessageToListModel(content, author);
     }
     
     public void removeMessageFromListModel(int index){
@@ -157,5 +157,13 @@ public class Controller {
     
     public String getDescription(){
         return manager.getDescription();
+    }
+    
+    public void setLastUsedAuthor(String newLastUsedAuthor){
+        manager.setLastUsedAuthor(newLastUsedAuthor);
+    }
+    
+    public String getLastUsedAuthor(){
+        return manager.getLastUsedAuthor();
     }
 }

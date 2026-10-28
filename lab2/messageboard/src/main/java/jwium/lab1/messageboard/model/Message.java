@@ -31,6 +31,12 @@ public class Message {
         postTime = LocalDateTime.now();
     }
     
+    public Message(String initialContent, String initialAuthor){
+        content = initialContent;
+        author = initialAuthor;
+        postTime = LocalDateTime.now();
+    }
+    
     /**
      * Constructs an empty Message with default blank content.
      */

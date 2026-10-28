@@ -22,6 +22,8 @@ public class MessagesManager {
     /** The text description of the message board. */
     private String description = "";
     
+    private String lastUsedAuthor = "unknown_user";
+    
     /**
      * Constructs a new MessagesManager with default values.
      */
@@ -77,8 +79,8 @@ public class MessagesManager {
         messages.add(new Message(content));
     }
     
-    public void addMessageToListModel(String content){
-        messagesListModel.addElement(new Message(content));
+    public void addMessageToListModel(String content, String author){
+        messagesListModel.addElement(new Message(content, author));
     }
     
     /**
@@ -123,5 +125,13 @@ public class MessagesManager {
     
     public DefaultListModel getListModel(){
         return messagesListModel;
+    }
+    
+    public void setLastUsedAuthor(String newLastUsedAuthor){
+        lastUsedAuthor = newLastUsedAuthor;
+    }
+    
+    public String getLastUsedAuthor(){
+        return lastUsedAuthor;
     }
 }
