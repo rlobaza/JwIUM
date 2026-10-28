@@ -51,7 +51,22 @@ public class MessagesPanel extends JPanel{
                 }
             }
             
-            controller.addMessageToListModel(newMessageContent);
+            String newMessageAuthor = (String)JOptionPane.showInputDialog(frame, "Please enter your nickname.", "Add Message", JOptionPane.PLAIN_MESSAGE, null, null, controller.getLastUsedAuthor());
+            
+            if(newMessageAuthor == null){
+                return;
+            }
+            
+            while(newMessageAuthor.equals("")){
+                newMessageAuthor = (String)JOptionPane.showInputDialog(frame, "Please enter a valid nickname.", "Add Message", JOptionPane.ERROR_MESSAGE, null, null, controller.getLastUsedAuthor());
+                
+                if(newMessageAuthor == null){
+                    return;
+                }
+            }
+            
+            controller.addMessageToListModel(newMessageContent, newMessageAuthor);
+            controller.setLastUsedAuthor(newMessageAuthor);
         });
         addButton.setToolTipText("Add new message");
         addButton.getAccessibleContext().setAccessibleDescription("Add new message");
@@ -63,7 +78,18 @@ public class MessagesPanel extends JPanel{
         deleteButton.setFont(deleteButton.getFont().deriveFont(16.0f));
         deleteButton.addActionListener(event -> {
             int index = messagesList.getSelectedIndex();
-            controller.removeMessageFromListModel(index);
+            
+            if(index == -1){
+                JOptionPane.showMessageDialog(frame, "Please select a message first.", "Error - No Message Selected", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+                int choice = JOptionPane.showConfirmDialog(frame, "Are you sure you want to delete this message?", "Confirm Deletion", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+                
+                if(choice == JOptionPane.YES_OPTION){
+                    controller.removeMessageFromListModel(index);
+                }
+            }
+            
         });
         deleteButton.setToolTipText("Delete selected message");
         deleteButton.getAccessibleContext().setAccessibleDescription("Delete selected message");
