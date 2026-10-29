@@ -12,13 +12,17 @@ import java.time.format.DateTimeFormatter;
  * @version 1.0
  */
 public class Message {
+    
     /** The text content of the message. */
     private String content;
     
+    /** The timestamp recording when the message was created. */
     private LocalDateTime postTime;
     
+    /** The author who posted the message. */
     private String author = "unknown_user";
     
+    /** The formatter used to display dates and times in a readable format. */
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
     
     /**
@@ -31,6 +35,12 @@ public class Message {
         postTime = LocalDateTime.now();
     }
     
+    /**
+     * Constructs a Message with the specified initial content and author.
+     * 
+     * @param initialContent the initial text content for the message
+     * @param initialAuthor the author of the message
+     */
     public Message(String initialContent, String initialAuthor){
         content = initialContent;
         author = initialAuthor;

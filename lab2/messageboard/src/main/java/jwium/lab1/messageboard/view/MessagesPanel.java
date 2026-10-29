@@ -6,12 +6,34 @@ import java.awt.event.KeyEvent;
 import jwium.lab1.messageboard.controller.*;
 import jwium.lab1.messageboard.model.Message;
 
+/**
+ * Represents the panel for viewing, adding, and deleting message board entries.
+ * 
+ * <p>Documentation documented with the help of AI (Model: Gemini).
+ * 
+ * @author Rafal Lobaza
+ * @version 1.0
+ */
 public class MessagesPanel extends JPanel{
     
+    /** The button used to open the dialog for adding a new message. */
     private final JButton addButton = new JButton("Add");
+    
+    /** The button used to delete the currently selected message. */
     private final JButton deleteButton = new JButton("Delete");
+    
+    /** The button used to return to the main menu view. */
     private final JButton returnButton = new JButton("Return");
     
+    /**
+     * Constructs a new MessagesPanel with layout managers, controller reference, and list model.
+     * 
+     * @param cardLayout the card layout manager for switching views
+     * @param cardPanel the panel containing multiple card views
+     * @param frame the parent application frame
+     * @param controller the application controller handling logic
+     * @param messagesListModel the list model containing message data
+     */
     public MessagesPanel(CardLayout cardLayout, JPanel cardPanel, JFrame frame, Controller controller, DefaultListModel messagesListModel){
         
         setLayout(new BorderLayout());
@@ -26,6 +48,8 @@ public class MessagesPanel extends JPanel{
         buttonsPanel.setLayout(gridLayoutButtons);
         
         JList<Message> messagesList = new JList<>(controller.getListModel());
+        messagesList.getAccessibleContext().setAccessibleDescription("Click a message to select it, then use Delete to remove it.");
+        messagesList.setToolTipText("Click a message to select it, then use Delete to remove it.");
         JScrollPane scrollPane = new JScrollPane(messagesList);
         
         JPanel wrapper = new JPanel(new GridBagLayout());
