@@ -4,8 +4,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+/**
+ * Represents the main menu panel containing navigation options and application exit controls.
+ * 
+ * <p>Documentation documented with the help of AI (Model: Gemini).
+ * 
+ * @author Rafal Lobaza
+ * @version 1.0
+ */
 public class MainMenuPanel extends JPanel{
     
+    /**
+     * Constructs a new MainMenuPanel with specified card layout, card panel container, and parent frame.
+     * 
+     * @param cardLayout the card layout manager for switching views
+     * @param cardPanel the panel containing multiple card views
+     * @param frame the parent application frame
+     */
     public MainMenuPanel(CardLayout cardLayout, JPanel cardPanel, JFrame frame){
         
         setLayout(new BorderLayout());

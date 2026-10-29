@@ -101,6 +101,9 @@ public class Controller {
         }
     }
     
+    /**
+     * Creates and initializes the main graphical application window and handles initial board description input.
+     */
     public void createWindow()
     {
         if(!manager.addDescriptionFromArgs(args)){
@@ -135,18 +138,39 @@ public class Controller {
         shouldEnd = true;
     }
     
+    /**
+     * Updates the board description with a new string value.
+     * 
+     * @param newDescription the new description text to set
+     */
     public void changeDescription(String newDescription){
         manager.changeDescription(newDescription);
     }
     
+    /**
+     * Retrieves the list model containing message data for the graphical view.
+     * 
+     * @return the DefaultListModel instance holding messages
+     */
     public DefaultListModel getListModel(){
         return manager.getListModel();
     }
     
+    /**
+     * Adds a new message with specified content and author directly to the message list model.
+     * 
+     * @param content the text content of the message
+     * @param author the author of the message
+     */
     public void addMessageToListModel(String content, String author){
         manager.addMessageToListModel(content, author);
     }
     
+    /**
+     * Removes a message from the list model at the specified index, handling any index exceptions.
+     * 
+     * @param index the position of the message to remove
+     */
     public void removeMessageFromListModel(int index){
         try{
             manager.removeMessageFromListModel(index);
@@ -155,14 +179,29 @@ public class Controller {
         }
     }
     
+    /**
+     * Retrieves the current text description of the message board.
+     * 
+     * @return the board description string
+     */
     public String getDescription(){
         return manager.getDescription();
     }
     
+    /**
+     * Updates the record of the author who most recently posted a message.
+     * 
+     * @param newLastUsedAuthor the name of the last active author
+     */
     public void setLastUsedAuthor(String newLastUsedAuthor){
         manager.setLastUsedAuthor(newLastUsedAuthor);
     }
     
+    /**
+     * Retrieves the name of the author who most recently posted a message.
+     * 
+     * @return the last used author name string
+     */
     public String getLastUsedAuthor(){
         return manager.getLastUsedAuthor();
     }

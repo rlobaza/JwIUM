@@ -7,10 +7,23 @@ import jwium.lab1.messageboard.controller.*;
 
 public class DescriptionPanel extends JPanel{
     
+    /** The text area displaying the board description. */
     private final JTextArea descriptionText;
+    
+    /** The button used to return to the main menu. */
     private final JButton returnButton;
+    
+    /** The button used to modify the board description. */
     private final JButton modifyButton;
     
+    /**
+     * Constructs a new DescriptionPanel with specified card layout, frame, and controller references.
+     * 
+     * @param cardLayout the card layout manager for switching views
+     * @param cardPanel the panel containing multiple card views
+     * @param frame the parent frame for dialogs
+     * @param controller the application controller handling data flow
+     */
     public DescriptionPanel(CardLayout cardLayout, JPanel cardPanel, JFrame frame, Controller controller){
         
         setLayout(new BorderLayout());
@@ -75,6 +88,11 @@ public class DescriptionPanel extends JPanel{
         add(wrapper, BorderLayout.SOUTH);
     }
     
+    /**
+     * Updates the text displayed in the description text area.
+     * 
+     * @param newDescription the new description string to set
+     */
     public void setDescription(String newDescription){
         descriptionText.setText(newDescription);
     }
