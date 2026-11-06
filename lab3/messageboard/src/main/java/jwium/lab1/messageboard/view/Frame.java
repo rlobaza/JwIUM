@@ -58,6 +58,8 @@ public class Frame extends JFrame{
     
     /**
      * Placeholder method for switching or refreshing the description panel view.
+     * 
+     * @param newDescription the new description
      */
     public void setDescription(String newDescription)
     {

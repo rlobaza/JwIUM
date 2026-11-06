@@ -13,14 +13,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Message {
     
-    /** The text content of the message. */
-    private String content;
-    
-    /** The timestamp recording when the message was created. */
-    private LocalDateTime postTime;
-    
-    /** The author who posted the message. */
-    private String author = "unknown_user";
+    /** The underlying data container holding message content, author, and timestamp. */
+    private final MessageData messageData;
     
     /** The formatter used to display dates and times in a readable format. */
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
@@ -31,8 +25,7 @@ public class Message {
      * @param initialContent the initial text content for the message
      */
     public Message(String initialContent){
-        content = initialContent;
-        postTime = LocalDateTime.now();
+        messageData = new MessageData(initialContent, "unknown_user", LocalDateTime.now());
     }
     
     /**
@@ -42,25 +35,14 @@ public class Message {
      * @param initialAuthor the author of the message
      */
     public Message(String initialContent, String initialAuthor){
-        content = initialContent;
-        author = initialAuthor;
-        postTime = LocalDateTime.now();
+        messageData = new MessageData(initialContent, initialAuthor, LocalDateTime.now());
     }
     
     /**
      * Constructs an empty Message with default blank content.
      */
     public Message(){
-        content = "";
-    }
-    
-    /**
-     * Sets or updates the text content of the message.
-     * 
-     * @param newContent the new text content to set
-     */
-    public void setContent(String newContent){
-        content = newContent;
+        messageData = new MessageData("", "unknown_user", LocalDateTime.now());
     }
     
     /**
@@ -69,11 +51,16 @@ public class Message {
      * @return the text content of the message
      */
     public String getContent(){
-        return content;
+        return messageData.content();
     }
     
+    /**
+     * Returns a formatted string representation of the message including timestamp, author, and content.
+     * 
+     * @return a formatted string representing the message
+     */
     @Override
     public String toString(){
-        return postTime.format(formatter) + " - " + author + ": " + content;
+        return messageData.postTime().format(formatter) + " - " + messageData.author() + ": " + messageData.content();
     }
 }

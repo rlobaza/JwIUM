@@ -4,6 +4,8 @@ import jwium.lab1.messageboard.view.*;
 import jwium.lab1.messageboard.model.*;
 import jwium.lab1.messageboard.exception.WrongIndexException;
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Controls the flow of the message board application.
@@ -26,10 +28,10 @@ public class Controller {
     private boolean shouldEnd = false;
     
     /** The messages manager handling application data and storage. */
-    private final MessagesManager manager;
+    private final MessagesManager manager = new MessagesManager();
     
     /** Command-line arguments passed upon application startup. */
-    private final String[] args;
+    private final ArrayList<String> args = new ArrayList<>();
     
     /**
      * Constructs a new Controller with the specified initial command-line arguments.
@@ -37,8 +39,9 @@ public class Controller {
      * @param initialArgs command-line arguments provided at startup
      */
     public Controller(String[] initialArgs){
-        args = initialArgs;
-        manager = new MessagesManager();
+        
+        args.addAll(Arrays.asList(initialArgs));
+        
     }
     
     /**
@@ -47,11 +50,11 @@ public class Controller {
      */
     public void startProgram(){
         
-        if(args.length >= 1){
+        if(args.size() >= 1){
             manager.addDescriptionFromArgs(args);
         }
         else{
-            manager.changeDescription(input.askForDescription());
+            manager.setDescription(input.askForDescription());
             display.emptyLine();
         }
         
@@ -122,10 +125,10 @@ public class Controller {
                 }
             }   
             
-            manager.changeDescription(description);
+            manager.setDescription(description);
         }
         
-        Frame frame = new Frame(this, manager.getListModel());
+        Frame frame = new Frame(this, manager.getMessagesListModel());
         frame.setDefaultCloseOperation(Frame.EXIT_ON_CLOSE);
         frame.setDescription(manager.getDescription());
         frame.setVisible(true);
@@ -144,7 +147,7 @@ public class Controller {
      * @param newDescription the new description text to set
      */
     public void changeDescription(String newDescription){
-        manager.changeDescription(newDescription);
+        manager.setDescription(newDescription);
     }
     
     /**
@@ -152,8 +155,8 @@ public class Controller {
      * 
      * @return the DefaultListModel instance holding messages
      */
-    public DefaultListModel getListModel(){
-        return manager.getListModel();
+    public DefaultListModel getMessagesListModel(){
+        return manager.getMessagesListModel();
     }
     
     /**

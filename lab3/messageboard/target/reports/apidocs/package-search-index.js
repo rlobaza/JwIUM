@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"jwium.lab1.messageboard"},{"l":"jwium.lab1.messageboard.controller"},{"l":"jwium.lab1.messageboard.exception"},{"l":"jwium.lab1.messageboard.model"},{"l":"jwium.lab1.messageboard.view"}];updateSearchResults();

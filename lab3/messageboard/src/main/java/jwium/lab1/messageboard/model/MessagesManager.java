@@ -3,6 +3,7 @@ package jwium.lab1.messageboard.model;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import jwium.lab1.messageboard.exception.WrongIndexException;
+import lombok.*;
 
 /**
  * Manages the collection of messages and the board description.
@@ -15,23 +16,22 @@ import jwium.lab1.messageboard.exception.WrongIndexException;
 public class MessagesManager {
     
     /** The list storing all application messages. */
+    @Getter
     private final ArrayList<Message> messages = new ArrayList<>();
     
     /** The list model storing messages for graphical components synchronization. */
+    @Getter
     private final DefaultListModel<Message> messagesListModel = new DefaultListModel<>();
     
     /** The text description of the message board. */
+    @Getter
+    @Setter
     private String description = "";
     
     /** The name of the author who most recently posted a message. */
+    @Getter
+    @Setter
     private String lastUsedAuthor = "unknown_user";
-    
-    /**
-     * Constructs a new MessagesManager with default values.
-     */
-    public MessagesManager(){
-        
-    }
     
     /**
      * Adds a board description extracted from command-line arguments if available.
@@ -39,28 +39,12 @@ public class MessagesManager {
      * @param args the command-line arguments array
      * @return true if description was successfully added, false otherwise
      */
-    public boolean addDescriptionFromArgs(String[] args){
-        if(args.length >= 1){
-            description = args[0];
+    public boolean addDescriptionFromArgs(ArrayList<String> args){
+        if(args.size() >= 1){
+            description = args.get(0);
             return true;
         }
         return false;
-    }
-    
-    /**
-     * Changes the current board description to a new one.
-     * 
-     * @param newDescription the new description text
-     */
-    public void changeDescription(String newDescription){
-        description = newDescription;
-    }
-    
-    /**
-     * Placeholder method for initialization or future array list operations.
-     */
-    public void ArrayList(){
-        
     }
     
     /**
@@ -117,50 +101,5 @@ public class MessagesManager {
             throw new WrongIndexException("ERROR: Index must be a valid number.");
         }
         messagesListModel.remove(index);
-    }
-    
-    /**
-     * Retrieves the list of all messages.
-     * 
-     * @return an ArrayList containing all stored messages
-     */
-    public ArrayList<Message> getMessages(){
-        return messages;
-    }
-    
-    /**
-     * Retrieves the current board description.
-     * 
-     * @return the description string
-     */
-    public String getDescription(){
-        return description;
-    }
-    
-    /**
-     * Retrieves the list model holding messages for the graphical interface.
-     * 
-     * @return the DefaultListModel containing Message objects
-     */
-    public DefaultListModel getListModel(){
-        return messagesListModel;
-    }
-    
-    /**
-     * Updates the record of the author who most recently posted a message.
-     * 
-     * @param newLastUsedAuthor the name of the last active author
-     */
-    public void setLastUsedAuthor(String newLastUsedAuthor){
-        lastUsedAuthor = newLastUsedAuthor;
-    }
-    
-    /**
-     * Retrieves the name of the author who most recently posted a message.
-     * 
-     * @return the last used author name string
-     */
-    public String getLastUsedAuthor(){
-        return lastUsedAuthor;
     }
 }

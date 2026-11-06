@@ -15,13 +15,6 @@ import com.formdev.flatlaf.intellijthemes.FlatNordIJTheme;
 public class Messageboard{
     
     /**
-     * Creates a new Messageboard object.
-     */
-    public Messageboard(){
-    
-    }
-    
-    /**
      * Main method that serves as the application's entry point.
      * <p>
      * Command-Line Arguments Order and Specification:

@@ -1,5 +1,6 @@
 
 package jwium.lab1.messageboard.view;
+import lombok.*;
 
 /**
  * Handles user input from the console.

@@ -14,13 +14,6 @@ import jwium.lab1.messageboard.model.*;
 public class Display {
     
     /**
-     * Creates a new Display object.
-     */
-    public Display(){
-        
-    }
-    
-    /**
      * Prints all messages stored in the message manager.
      * Each message is preceded by its position in the list,
      * starting from 1.

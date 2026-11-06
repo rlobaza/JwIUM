@@ -47,7 +47,7 @@ public class MessagesPanel extends JPanel{
         GridLayout gridLayoutButtons = new GridLayout(1, 3, 30, 0);
         buttonsPanel.setLayout(gridLayoutButtons);
         
-        JList<Message> messagesList = new JList<>(controller.getListModel());
+        JList<Message> messagesList = new JList<>(controller.getMessagesListModel());
         messagesList.getAccessibleContext().setAccessibleDescription("Click a message to select it, then use Delete to remove it.");
         messagesList.setToolTipText("Click a message to select it, then use Delete to remove it.");
         JScrollPane scrollPane = new JScrollPane(messagesList);
