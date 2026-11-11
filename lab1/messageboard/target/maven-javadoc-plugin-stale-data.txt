@@ -1,0 +1,48 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+--no-fonts
+-encoding
+'UTF-8'
+-protected
+--release
+25
+-sourcepath
+'C:/Users/Rafal/Documents/NetBeansProjects/JwIUM/lab1/messageboard/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2026. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/Rafal/Documents/NetBeansProjects/JwIUM/lab1/messageboard/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'messageboard 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'messageboard 1.0-SNAPSHOT API'
+jwium.lab1.messageboard.controller
+jwium.lab1.messageboard.exception
+jwium.lab1.messageboard
+jwium.lab1.messageboard.model
+jwium.lab1.messageboard.view
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\src\main\java = 1791826669965
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\allclasses-index.html = 1791915832657
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\allpackages-index.html = 1791915832660
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\element-list = 1791915832539
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\help-doc.html = 1791915832688
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\index-all.html = 1791915832677
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\index.html = 1791915832645
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\member-search-index.js = 1791915832665
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\module-search-index.js = 1791915832661
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\overview-summary.html = 1791915832684
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\overview-tree.html = 1791915832641
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\package-search-index.js = 1791915832662
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\search.html = 1791915832681
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\serialized-form.html = 1791915832588
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\tag-search-index.js = 1791915832666
+C:\Users\Rafal\Documents\NetBeansProjects\JwIUM\lab1\messageboard\target\reports\apidocs\type-search-index.js = 1791915832663
