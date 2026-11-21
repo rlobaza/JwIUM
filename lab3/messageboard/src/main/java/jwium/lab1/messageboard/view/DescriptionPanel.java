@@ -5,6 +5,14 @@ import java.awt.*;
 import java.awt.event.*;
 import jwium.lab1.messageboard.controller.*;
 
+/**
+ * Represents the panel for viewing and modifying the message board's description.
+ * 
+ * <p>Documentation documented with the help of AI (Model: Gemini).
+ * 
+ * @author Rafal Lobaza
+ * @version 1.1
+ */
 public class DescriptionPanel extends JPanel{
     
     /** The text area displaying the board description. */

@@ -1,6 +1,5 @@
 
 package jwium.lab1.messageboard.view;
-import lombok.*;
 
 /**
  * Handles user input from the console.
@@ -9,7 +8,7 @@ import lombok.*;
  * <p>Documentation documented with the help of AI (Model: Gemini).
  * 
  * @author Rafal Lobaza
- * @version 1.0
+ * @version 1.1
  */
 public class DataInput {
     

@@ -165,8 +165,19 @@ public class Controller {
      * @param content the text content of the message
      * @param author the author of the message
      */
+    @Deprecated
     public void addMessageToListModel(String content, String author){
         manager.addMessageToListModel(content, author);
+    }
+    
+    /**
+     * Adds a new message with specified content and author directly to the message list model.
+     * 
+     * @param content the text content of the message
+     * @param author the author of the message
+     */
+    public void addMessage(String content, String author){
+        manager.addMessage(content, author);
     }
     
     /**
@@ -174,12 +185,36 @@ public class Controller {
      * 
      * @param index the position of the message to remove
      */
+    @Deprecated
     public void removeMessageFromListModel(int index){
         try{
             manager.removeMessageFromListModel(index);
         }
         catch(WrongIndexException exception){
         }
+    }
+    
+    /**
+     * Removes a message from the list model at the specified index, handling any index exceptions.
+     * 
+     * @param index the position of the message to remove
+     */
+    public void removeMessage(int index){
+        try{
+            manager.removeMessage(index);
+        }
+        catch(WrongIndexException exception){
+        }
+    }
+    
+    /**
+     * Removes the specified Message object via the messages manager.
+     *
+     * @param message the Message object to remove
+     * @return true if the message was removed, false otherwise
+     */
+    public boolean removeMessage(Message message) {
+        return manager.removeMessage(message);
     }
     
     /**
@@ -207,5 +242,16 @@ public class Controller {
      */
     public String getLastUsedAuthor(){
         return manager.getLastUsedAuthor();
+    }
+    
+    public void applyAuthorFilter(String author){
+        if(author.equals(""))
+        {
+            manager.stopFilteringMessages();
+        }
+        else
+        {
+            manager.filterMessagesByAuthor(author);
+        }
     }
 }

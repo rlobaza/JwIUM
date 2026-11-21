@@ -2,6 +2,7 @@
 package jwium.lab1.messageboard.model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import lombok.*;
 
 /**
  * Represents a single message entity containing text content.
@@ -9,12 +10,16 @@ import java.time.format.DateTimeFormatter;
  * <p>Documentation documented with the help of AI (Model: Gemini).
  * 
  * @author Rafal Lobaza
- * @version 1.0
+ * @version 2.0
  */
 public class Message {
     
     /** The underlying data container holding message content, author, and timestamp. */
     private final MessageData messageData;
+    
+    @Getter
+    @Setter
+    private MessageStatus status = MessageStatus.VISIBLE;
     
     /** The formatter used to display dates and times in a readable format. */
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
@@ -62,5 +67,14 @@ public class Message {
     @Override
     public String toString(){
         return messageData.postTime().format(formatter) + " - " + messageData.author() + ": " + messageData.content();
+    }
+    
+    /**
+     * Returns author of the message.
+     * 
+     * @return string representing the author of the message
+     */
+    public String getAuthor(){
+        return messageData.author();
     }
 }

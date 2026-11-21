@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import jwium.lab1.messageboard.controller.*;
 import jwium.lab1.messageboard.model.Message;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  * Represents the panel for viewing, adding, and deleting message board entries.
@@ -12,7 +14,7 @@ import jwium.lab1.messageboard.model.Message;
  * <p>Documentation documented with the help of AI (Model: Gemini).
  * 
  * @author Rafal Lobaza
- * @version 1.0
+ * @version 2.0
  */
 public class MessagesPanel extends JPanel{
     
@@ -24,6 +26,9 @@ public class MessagesPanel extends JPanel{
     
     /** The button used to return to the main menu view. */
     private final JButton returnButton = new JButton("Return");
+    
+    /** The text field used to filter displayed messages by author. */
+    private final JTextField authorFilterField = new JTextField(16);
     
     /**
      * Constructs a new MessagesPanel with layout managers, controller reference, and list model.
@@ -42,6 +47,19 @@ public class MessagesPanel extends JPanel{
         JLabel messagesLabel = new JLabel("Messages");
         messagesLabel.setFont(messagesLabel.getFont().deriveFont(24.0f));
         labelPanel.add(messagesLabel);
+        
+        JPanel filterPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 8, 4));
+        JLabel filterLabel = new JLabel("Filter by author:");
+        filterLabel.setFont(filterLabel.getFont().deriveFont(14.0f));
+        authorFilterField.setFont(authorFilterField.getFont().deriveFont(14.0f));
+        authorFilterField.setToolTipText("Type an author name to filter messages; leave empty to show all.");
+        authorFilterField.getAccessibleContext().setAccessibleDescription("Type an author name to filter messages; leave empty to show all.");
+        filterPanel.add(filterLabel);
+        filterPanel.add(authorFilterField);
+        
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(labelPanel, BorderLayout.NORTH);
+        topPanel.add(filterPanel, BorderLayout.CENTER);
         
         JPanel buttonsPanel = new JPanel();
         GridLayout gridLayoutButtons = new GridLayout(1, 3, 30, 0);
@@ -89,7 +107,7 @@ public class MessagesPanel extends JPanel{
                 }
             }
             
-            controller.addMessageToListModel(newMessageContent, newMessageAuthor);
+            controller.addMessage(newMessageContent, newMessageAuthor);
             controller.setLastUsedAuthor(newMessageAuthor);
         });
         addButton.setToolTipText("Add new message");
@@ -101,16 +119,15 @@ public class MessagesPanel extends JPanel{
         
         deleteButton.setFont(deleteButton.getFont().deriveFont(16.0f));
         deleteButton.addActionListener(event -> {
-            int index = messagesList.getSelectedIndex();
-            
-            if(index == -1){
+            Message selectedMessage = messagesList.getSelectedValue();
+
+            if (selectedMessage == null) {
                 JOptionPane.showMessageDialog(frame, "Please select a message first.", "Error - No Message Selected", JOptionPane.ERROR_MESSAGE);
-            }
-            else{
+            } else {
                 int choice = JOptionPane.showConfirmDialog(frame, "Are you sure you want to delete this message?", "Confirm Deletion", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
-                
-                if(choice == JOptionPane.YES_OPTION){
-                    controller.removeMessageFromListModel(index);
+
+                if (choice == JOptionPane.YES_OPTION) {
+                    controller.removeMessage(selectedMessage);
                 }
             }
             
@@ -130,10 +147,29 @@ public class MessagesPanel extends JPanel{
         returnButton.getAccessibleContext().setAccessibleDescription("Return to the main menu");
         returnButton.setMnemonic(KeyEvent.VK_R);
         buttonsPanel.add(returnButton);
+        
+        // Author filter text field
+        authorFilterField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                controller.applyAuthorFilter(authorFilterField.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                controller.applyAuthorFilter(authorFilterField.getText());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+               controller.applyAuthorFilter(authorFilterField.getText());
+            }
+        });
                 
         // ---------------------------------------------------------------------
         
         add(labelPanel, BorderLayout.NORTH);
+        add(topPanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
         add(wrapper, BorderLayout.SOUTH);
     }

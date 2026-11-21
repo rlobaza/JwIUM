@@ -11,7 +11,7 @@ import lombok.*;
  * <p>Documentation documented with the help of AI (Model: Gemini).
  * 
  * @author Rafal Lobaza
- * @version 1.0
+ * @version 2.2
  */
 public class MessagesManager {
     
@@ -54,6 +54,7 @@ public class MessagesManager {
      */
     public void addMessage(Message message){
         messages.add(message);
+        refreshVisibleMessagesListModel();
     }
     
     /**
@@ -63,6 +64,18 @@ public class MessagesManager {
      */
     public void addMessage(String content){
         messages.add(new Message(content));
+        refreshVisibleMessagesListModel();
+    }
+    
+    /**
+     * Creates and adds a new Message object using the specified content string.
+     * 
+     * @param content the text content for the new message
+     * @param author the author of the message
+     */
+    public void addMessage(String content, String author){
+        messages.add(new Message(content, author));
+        refreshVisibleMessagesListModel();
     }
     
     /**
@@ -71,6 +84,7 @@ public class MessagesManager {
      * @param content the text content of the message
      * @param author the author of the message
      */
+    @Deprecated
     public void addMessageToListModel(String content, String author){
         messagesListModel.addElement(new Message(content, author));
     }
@@ -81,12 +95,31 @@ public class MessagesManager {
      * @param index the position of the message to remove
      * @throws WrongIndexException if the index is out of valid bounds
      */
+    @Deprecated
     public void removeMessage(int index) throws WrongIndexException{
         if(index >= messages.size() || index < 0)
         {
             throw new WrongIndexException("ERROR: Index must be a valid number.");
         }
         messages.remove(index);
+        refreshVisibleMessagesListModel();
+    }
+    
+    /**
+     * Removes the specified Message object from the collection and refreshes visible messages.
+     *
+     * @param message the Message object to remove
+     * @return true if the message was found and removed, false otherwise
+     */
+    public boolean removeMessage(Message message) {
+        if (message == null) {
+            return false;
+        }
+        boolean removed = messages.remove(message);
+        if (removed) {
+            refreshVisibleMessagesListModel();
+        }
+        return removed;
     }
     
     /**
@@ -95,11 +128,55 @@ public class MessagesManager {
      * @param index the position of the message to remove from the list model
      * @throws WrongIndexException if the index is out of valid bounds
      */
+    @Deprecated
     public void removeMessageFromListModel(int index) throws WrongIndexException{
         if(index >= messagesListModel.size() || index < 0)
         {
             throw new WrongIndexException("ERROR: Index must be a valid number.");
         }
         messagesListModel.remove(index);
+    }
+    
+    /**
+     * Filters messages by author case-sensitively using the given query.
+     *
+     * @param author the author name or fragment to filter by
+     */
+    public void filterMessagesByAuthor(String author) {
+        String query = author == null ? "" : author.trim();
+
+        for (Message message : messages) {
+            String msgAuthor = message.getAuthor() == null ? "" : message.getAuthor();
+            if (msgAuthor.contains(query)) {
+                message.setStatus(MessageStatus.VISIBLE);
+            } else {
+                message.setStatus(MessageStatus.HIDDEN);
+            }
+        }
+
+        refreshVisibleMessagesListModel();
+    }
+    
+    /**
+     * Restores visibility status for all messages in the collection and list model.
+     */
+    public void stopFilteringMessages()
+    {
+        for(Message message : messages)
+        {
+            message.setStatus(MessageStatus.VISIBLE);
+        }
+        
+        refreshVisibleMessagesListModel();
+    }
+    
+    /**
+    * Refreshes the list model so that only visible messages are displayed.
+    */
+    private void refreshVisibleMessagesListModel() {
+        messagesListModel.clear();
+        messages.stream()
+                .filter(message -> message.getStatus() == MessageStatus.VISIBLE)
+                .forEach(messagesListModel::addElement);
     }
 }
