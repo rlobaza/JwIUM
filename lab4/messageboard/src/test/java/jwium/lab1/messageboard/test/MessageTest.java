@@ -66,19 +66,23 @@ public class MessageTest {
     }
 
     @Test
-    void toString_nullPostTimeInMessageData_throwsNullPointerException() throws Exception {
+    void toString_nullPostTimeInMessageData_throwsNullPointerException() {
         Message message = new Message("Is this the content?", "user");
 
-        Field dataField = Message.class.getDeclaredField("messageData");
-        dataField.setAccessible(true);
-        MessageData originalData = (MessageData) dataField.get(message);
-        MessageData brokenData = new MessageData(
-                originalData.content(),
-                originalData.author(),
-                null
-        );
-        dataField.set(message, brokenData);
-        
+        try {
+            Field dataField = Message.class.getDeclaredField("messageData");
+            dataField.setAccessible(true);
+            MessageData originalData = (MessageData) dataField.get(message);
+            MessageData brokenData = new MessageData(
+                    originalData.content(),
+                    originalData.author(),
+                    null
+            );
+            dataField.set(message, brokenData);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            fail("Failed to prepare test data via reflection: " + e.getMessage());
+        }
+
         assertThrows(NullPointerException.class, message::toString);
     }
 

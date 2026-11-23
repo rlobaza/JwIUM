@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * <p>Methods named with the help of AI (Model: Gemini).
  * 
  * @author Rafal Lobaza
- * @version 1.0
+ * @version 1.1
  */
 public class MessagesManagerTest {
     private MessagesManager manager;
